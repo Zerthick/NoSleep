@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017  Zerthick
+ * Copyright (C) 2018  Zerthick
  *
  * This file is part of NoSleep.
  *
@@ -32,7 +32,6 @@ import org.spongepowered.api.plugin.PluginContainer;
 @Plugin(
         id = "nosleep",
         name = "NoSleep",
-        version = "1.0.0",
         description = "A simple plugin to prevent sleeping through the night.",
         authors = {
                 "Zerthick"
