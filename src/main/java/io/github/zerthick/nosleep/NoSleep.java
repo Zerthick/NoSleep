@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2018  Zerthick
+ * Copyright (C) 2021  Zerthick
  *
  * This file is part of NoSleep.
  *
  * NoSleep is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * NoSleep is distributed in the hope that it will be useful,
@@ -20,52 +20,43 @@
 package io.github.zerthick.nosleep;
 
 import com.google.inject.Inject;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.spongepowered.api.data.DataTransactionResult;
+import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.filter.Getter;
-import org.spongepowered.api.event.game.state.GameStartedServerEvent;
-import org.spongepowered.api.event.network.ClientConnectionEvent;
-import org.spongepowered.api.plugin.Plugin;
-import org.spongepowered.api.plugin.PluginContainer;
+import org.spongepowered.api.event.lifecycle.ConstructPluginEvent;
+import org.spongepowered.api.event.network.ServerSideConnectionEvent;
+import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.plugin.jvm.Plugin;
 
-@Plugin(
-        id = "nosleep",
-        name = "NoSleep",
-        description = "A simple plugin to prevent sleeping through the night.",
-        authors = {
-                "Zerthick"
-        }
-)
+@Plugin("nosleep")
 public class NoSleep {
 
-    @Inject
-    private Logger logger;
+    private final PluginContainer container;
+    private final Logger logger;
 
     @Inject
-    private PluginContainer instance;
+    NoSleep(final PluginContainer container, final Logger logger) {
+        this.container = container;
+        this.logger = logger;
+    }
 
     @Listener
-    public void onServerStart(GameStartedServerEvent event) {
+    public void onConstructPlugin(final ConstructPluginEvent event) {
         // Log Start Up to Console
-        getLogger().info(
-                instance.getName() + " version " + instance.getVersion().orElse("")
+        logger.info(
+                container.metadata().name().orElse("Unknown Plugin") + " version " + container.metadata().version()
                         + " enabled!");
     }
 
 
     @Listener
-    public void onPlayerJoin(ClientConnectionEvent.Join event, @Getter("getTargetEntity") Player player) {
-
+    public void onPlayerJoin(ServerSideConnectionEvent.Join event, @Getter("player") ServerPlayer player) {
         // Disable Sleeping for the Player
-        player.setSleepingIgnored(true);
-    }
-
-    public Logger getLogger() {
-        return logger;
-    }
-
-    public PluginContainer getInstance() {
-        return instance;
+        DataTransactionResult result = player.offer(Keys.IS_SLEEPING_IGNORED, true);
+        logger.info(result);
     }
 }
