@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.zerthick"
-version = "1.3.0-pre"
+version = "1.3.0-alpha"
 
 repositories {
     mavenCentral()
