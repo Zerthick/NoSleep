@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021  Zerthick
+ * Copyright (C) 2021 Zerthick
  *
  * This file is part of NoSleep.
  *
@@ -23,7 +23,6 @@ import com.google.inject.Inject;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.filter.Getter;
@@ -57,6 +56,5 @@ public class NoSleep {
     public void onPlayerJoin(ServerSideConnectionEvent.Join event, @Getter("player") ServerPlayer player) {
         // Disable Sleeping for the Player
         DataTransactionResult result = player.offer(Keys.IS_SLEEPING_IGNORED, true);
-        logger.info(result);
     }
 }
