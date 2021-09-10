@@ -29,7 +29,8 @@ import org.spongepowered.api.event.filter.Getter;
 import org.spongepowered.api.event.lifecycle.ConstructPluginEvent;
 import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 import org.spongepowered.plugin.PluginContainer;
-import org.spongepowered.plugin.jvm.Plugin;
+import org.spongepowered.plugin.builtin.jvm.Plugin;
+
 
 @Plugin("nosleep")
 public class NoSleep {
@@ -55,6 +56,6 @@ public class NoSleep {
     @Listener
     public void onPlayerJoin(ServerSideConnectionEvent.Join event, @Getter("player") ServerPlayer player) {
         // Disable Sleeping for the Player
-        DataTransactionResult result = player.offer(Keys.IS_SLEEPING_IGNORED, true);
+        player.offer(Keys.IS_SLEEPING_IGNORED, true);
     }
 }
