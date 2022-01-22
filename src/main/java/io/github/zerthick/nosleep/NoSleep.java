@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Zerthick
+ * Copyright (C) 2018-2022 Zerthick
  *
  * This file is part of NoSleep.
  *
@@ -21,7 +21,6 @@ package io.github.zerthick.nosleep;
 
 import com.google.inject.Inject;
 import org.apache.logging.log4j.Logger;
-import org.spongepowered.api.data.DataTransactionResult;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.event.Listener;
