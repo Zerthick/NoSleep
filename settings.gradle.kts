@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2018  Zerthick
+ * Copyright (C) 2018-2022 Zerthick
  *
  * This file is part of NoSleep.
  *
  * NoSleep is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
+ * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
  * NoSleep is distributed in the hope that it will be useful,
@@ -17,22 +17,4 @@
  * along with NoSleep.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-plugins {
-    id 'org.spongepowered.plugin' version '0.9.0'
-    id 'java'
-}
-
-group 'io.github.zerthick'
-version '1.2.1'
-
-repositories {
-    mavenCentral()
-    maven {
-        name = 'sponge'
-        url = 'http://repo.spongepowered.org/maven'
-    }
-}
-
-dependencies {
-    compile 'org.spongepowered:spongeapi:7.3.0'
-}
+rootProject.name = "NoSleep"
